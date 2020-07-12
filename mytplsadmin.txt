@@ -1,0 +1,108 @@
+[mlimg][xlang:en]
+- mytplsadmin -
+
+
+SUMMARY:
+
+This files add templates admin into your module.
+
+
+SUPPORT CORES:
+ - XOOPS 2.0.x
+ - XOOPS 2.1/2.2 (from www.xoopr.org)
+ - XOOPS 2.0.x-JP (from xoopscube.jp)
+
+
+BACKGROUND:
+
+The template admin in XOOPS system module is hard to use.
+If each module has a template management screen for itself,
+webmasters using XOOPS must feel it easy.
+I will recommend it to the module developers by all means.
+
+
+HOW TO USE:
+
+1) copy 2 files of
+     admin/mytplsadmin.php
+     admin/mytplsform.php
+   into modules/(your module)/admin/
+
+2) copy 5 files of
+     include/gtickets.php
+     include/Text_Diff.php
+     include/Text_Diff_Renderer.php
+     include/Text_Diff_Renderer_inline.php
+     include/Text_Diff_Renderer_unified.php
+   into modules/(your module)/include
+   (this gtickets.php is compatible for myblocksadmin or mymenu)
+
+3) edit admin/menu.php and append a menu item like this:
+
+	$adminmenu[] = array( 'title' => _MI_SYSTEM_ADMENU15 ,
+	                      'link' => "admin/mytplsadmin.php" ) ;
+
+That's all !
+
+
+[/xlang:en]
+[xlang:ja]
+
+●要旨
+
+モジュールの管理画面に、そのモジュールだけのテンプレート管理画面を追加するためのファイル群です。
+
+
+●対応コア
+ - XOOPS 2.0.x
+ - XOOPS 2.1/2.2 （本家版）
+ - XOOPS 2.0.x-JP （JP版）
+
+
+●背景
+
+XOOPSのブテンプレート管理はあまりにも使いづらいと思います。
+カスタマイズするには複製しなければなりませんが、テンプレートを複製するとモジュールアップデート時のメンテナンスが拷問に近いほど面倒になります。
+
+そんな苦痛から逃れようと、作ったのがこのmytplsadminです。
+
+モジュール毎に、テンプレート管理が出来るだけでなく、どのテンプレートをどう書き換えたかが一目瞭然なので、非常に使いやすくなっていると自負しています。コピーや削除も極めて使いやすいインターフェースになっています。
+
+管理画面を持つモジュールすべてに、mytplsadminの導入をおすすめします。
+
+
+●使い方：
+
+
+1) まずは解凍して下さい。
+
+
+2) 以下の2ファイルを modules/(dirname)/admin にコピーしてください。
+
+     admin/mytplsadmin.php
+     admin/mytplsform.php
+
+3) 以下の5ファイルを modules/(dirname)include にコピーしてください。
+   gtickets.php というファイルは、mymenu にも含まれますが、コンパチです。
+
+     include/gtickets.php
+     include/Text_Diff.php
+     include/Text_Diff_Renderer.php
+     include/Text_Diff_Renderer_inline.php
+     include/Text_Diff_Renderer_unified.php
+
+4) admin/menu.php をエディタで開き、こんな感じで１行追加して下さい。
+
+	$adminmenu[] = array( 'title' => _MI_SYSTEM_ADMENU15 ,
+	                      'link' => "admin/mytplsadmin.php" ) ;
+
+
+また、blocksadminのブロック編集画面における「テンプレートを編集」から、tplsadminを呼び出すためには、myblocksadminに存在する myblockform.php をこのパッケージに含まれている myblockform.php にて上書きしてください。
+
+
+
+すべてのモジュール作者の方へ:
+
+「ぜひお試し下さい!!」
+
+[/xlang:ja]

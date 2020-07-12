@@ -1,0 +1,228 @@
+[mlimg][xlang:en]
+- Templates Admin Module -
+
+SUMMARY:
+
+A module should be replaced "template manager" in system module.
+
+I've made this module for recovering the features should be gifted in original DB template system.
+
+I recommend tplsadmin module to all xoopsers with confidence.
+
+
+
+DESCRIPTION:
+
+- No hacks needed
+- Easy to see differences of templates wholely
+- Show "diff" from default or file
+- Easy to copy&delete from any DB-set/file to any DB-set
+- Easy to find the name of the target template (HTML comment or div border)
+- Easy to edit the template just click links named the template in front side
+- Generate specifications for template's variables dynamically as Dreamweaver Extension
+- You can preview the site just by edit the template files (mainfile patch needed)
+
+
+
+USAGE:
+
+Just install it.
+You can operate templates with no documents.
+
+- To know the name of the template
+-- go to "Cache Hookings" in tplsadmin
+-- push "Implant comments" or "Implant div tags"
+-- go to and display public pages of your site
+-- you can find the template name as a HTML comment or a link in bordered div
+
+- To get specifications for template's variables of your site
+-- go to "Cache Hookings" in tplsadmin
+-- push "Implant logics to collect template variables"
+-- go to front sides of your site
+-- go to and display public pages of your site
+-- you can find the number of specifications as "Template vars info files:"
+-- if enough, "Get info of template variables as DreamWeaver Extensions"
+-- don't forget pushing "Normalize compiled template caches" after outputting
+-- extract zip or tar.gz
+-- run Macromedia Extension Manager
+-- execute the files named (module_name).mxi
+-- install them
+-- you can see assigned names of template-variables as Dreamweaver's Snippets
+-- you can also see assigned data in the variables in right side of snippets
+
+- To download template set
+-- go to "Cache Hookings" in tplsadmin
+-- select DB-template set you want
+-- push zip or tar.gz
+
+- To upload templates into DB-template set
+-- create a zip/tar.gz archive including template files
+-- all files in any paths can be recognized
+-- go to "Cache Hookings" in tplsadmin
+-- select DB-template set you want
+-- specify the archive
+
+- To use the feature of "Edit and Preview"
+-- edit mainfile.php (insert a line just after common.php)
+[code]
+	if (!isset($xoopsOption['nocommon'])) {
+		include XOOPS_ROOT_PATH."/include/common.php";
+		include XOOPS_ROOT_PATH."/modules/tplsadmin/include/autoupdate.inc.php" ;
+	}
+[/code]
+-- go to admin -> system -> preferences -> general setting
+-- turn "Update module template .html files ..." on
+-- put template files in the path of /themes/(your_theme)/templates/
+-- edit the template files in the path
+-- you can preview your local site with new templates.
+
+
+
+COPYRIGHT:
+
+I do not insist on the right of these codes, and don't guarantee.
+
+I use PEAR::Text/Diff.
+The rights of this code is under license of PEAR, perhaps.
+Special thanks to the author - Geoffrey T. Dairiki -.
+
+I use PEAR::Archive/Zip.
+The rights of this code is under license of PEAR, perhaps.
+Special thanks to the author - Vincent Blavet -.
+
+
+
+
+
+
+[/xlang:en]
+[xlang:ja]
+
+●要旨
+
+システムモジュールのテンプレート管理に取って代わるモジュール。
+
+せっかく使いやすくするために作られたはずのDBテンプレートが、実装の不備でアイデア倒れに終わっているので、本来備わっているべき機能や操作性を取り戻すために作りました。
+
+このモジュールを一番お勧めしたい人は、XOOPSのテンプレートシステムは使い物にならない、と早々に見限ってしまったデザイナーさんですが、モジュール作者でも一般ユーザでも、XOOPSを利用している人全員に対して、自信を持ってお勧めできます。
+
+
+
+●特長
+
+- コアHack不要
+- 判りやすいモジュール毎のテンプレート状況表示
+- デフォルトテンプレートやベースファイルとの差分表示
+- モジュール別のテンプレートセットコピー
+- チェックボックス方式で個別に指定できるテンプレートコピー・削除
+- 目的とするテンプレート名を知るために２つの方法を提供
+- 公開側の画面から直接テンプレート編集画面へ入るためのリンクを提供
+- あるテンプレートでどのテンプレート変数が利用可能かを知るための手段を提供
+- そのテンプレート変数にどのような値がアサインされるかを知るための手段を提供
+- テーマ内のファイルを編集するだけで、自動的にテンプレートが更新される機能
+
+
+
+●使い方
+
+ごくごく普通のモジュールとして、インストールしてください。
+それだけです。
+
+上部メニューにモジュール名が並びますので、テンプレートを操作したいモジュールを選択してから、コピー・編集・削除等の操作を行ってください。テンプレートのコピー・削除を行う場合は、先に対象となるテンプレートをチェックしておく必要があります。基本的に、テンプレートセット単位での操作となりますので、同一列内でのチェック状態を確認してください。
+
+テンプレートセットの運用法で、私がお勧めするのは、defaultをカスタマイズする方法です。もちろん、一般設定のデフォルトテンプレートセットも、「default」とします。そして、必要に応じて、別のテンプレートセットにバックアップ（複製）を行ってください。
+
+こうすることで、モジュールアップデートとの相性がずっと良くなります。
+
+モジュールがテンプレートの仕様を大幅に変更した時にもおかしくなりませんし、それによってデフォルトに戻ってしまったのであれば、バックアップしたテンプレートセット側からコピーし戻せばよいのです。
+
+
+tplsadminには、他にもテンプレートに関する機能が数多くあります。
+
+・目的のテンプレート名を知る
+XOOPSの表示画面を見ても、どの部分が、どのテンプレートによる出力かは判りませんが、「キャッシュフック操作」の上の２つのボタンいずれかを押すことで、表側画面にテンプレート名を表示することができるようになります。
+「HTMLコメント」「div枠」のうち、好きな方をお試し下さい。
+
+・テンプレート変数情報を知る
+あるテンプレートに、どの変数がどのようにアサインされたかを知るためには、まず「キャッシュフック操作」から「テンプレート変数情報取得ロジックの埋め込み」を行います。これによって、今後、サイトの公開側が表示された時（＝そのテンプレートが処理された）に、埋め込まれたロジックがアサインされた変数の一覧を取得し、templates_c/ 内のファイルに蓄積していきます。
+蓄積したデータの出力方法は色々考えられますが、現時点で実装しているのは、Dreamweaver用のSnippetsに登録するExtensionとしての出力です。目的とするテンプレートを公開側から一通り処理できたら、「キャッシュフック操作」から「テンプレート変数情報をDreamWeaver用に取得する」として、アーカイブをダウンロードします。アーカイブを解凍して、インストールすれば、各テンプレートファイルにどの変数がどのようにアサインされているかを、Dreamweaver上で知ることができるようになります。
+もちろん、スニペットですから、ダブルクリックすることで、<{$xoops_url}> 等と自動的に入力されます。
+
+・テンプレートのアップロードとダウンロード
+システムモジュールのテンプレート管理と違い、tplsadminでは、テンプレートセットのダウンロードとアップロードを完全にサポートしています。本来、DBテンプレートは、フラットな構造を持つものなので、ダウンロードできるアーカイブにもフラットに格納されています。解凍して出来たディレクトリをそのまま、ご利用中のテーマフォルダの直下に、templates/ として置けば、下に示す自動更新機能の対象にもなります。
+それと逆操作となるアップロードも、zipやtar.gzにくるむことで可能です。基本的にはフラットな構造をイメージしていますが、モジュール毎やブロックなどで階層構造を持っていても、基本的には正しくアップロードされるはずです。
+もちろん、既存のテンプレートセットをアップロード先とすることもできます。そのセットが持っていないテンプレートであれば新規に作成され、元々持っているテンプレートであれば上書きされます。
+
+・テンプレートの自動更新機能を使う
+FILEテンプレートが持つ優位点である、「ファイルを編集するだけでサイトに反映される」という機能を、DBテンプレートシステムでも利用することができます。
+mainfile.phpに、以下のように一行だけ追加してください。
+[code]
+	if (!isset($xoopsOption['nocommon'])) {
+		include XOOPS_ROOT_PATH."/include/common.php";
+		include XOOPS_ROOT_PATH."/modules/tplsadmin/include/autoupdate.inc.php" ;
+	}
+[/code]
+common.php の読込直後であることが重要です。if文の外側には置かないでください。
+あとは、「システム管理」「一般設定」において、「themes/ ディレクトリからの自動アップデートを有効にする」をONとすることで、テーマファイル下に置かれたテンプレートファイルの更新時間を調べて、自動的にDB内のテンプレートに置き換えます。
+つまり、テーマフォルダ内を編集するだけで、テンプレートも含めた総合的なデザインワークが可能となるわけです。
+なお、テンプレートファイルの置き場所は、テーマ内のtemplatesディレクトリ直下です。defaultテーマであれば、
+XOOPS_ROOT_PATH/themes/default/templates/
+となります。
+ダウンロード・アップロード機能と連携して、有効に活用してください。
+
+
+
+●著作権など
+
+私のコード部分については、特に何も主張しません。ご自由にお使いください。
+
+ただ、PEAR::Text/Diff および PEAR::Archive_Zip を利用しているので、この部分については、各PEARのライセンスが有効になるでしょう。（もしかするとモジュール全体かもしれません）
+
+ともあれ、Text_Diffパッケージを作成してくれた作者 Geoffrey T. Dairiki さんおよび、Archive_Zipパッケージを作成してくれた作者 Vincent Blavet さんに感謝します。
+
+
+●個人的なメモ
+
+XOOPSのDBテンプレートには様々な設計ミスがありますが、比較的大きいのが、ブロックに置ける同一名テンプレートの扱いです。異なるブロックが同一のテンプレート名を参照していても、tplfileテーブルに登録されます。それも、refidというID風の値をblockidとして登録され、削除の際にも、そのrefidがキーとなります。
+しかし、実際の表示処理では、あくまでテンプレート名だけが利用されるため、片方のテンプレートを編集しても、反映されないことがしばしばあります。とりあえず、この問題を明確化するために、本モジュール内では、同一ファイル名のテンプレートについて、(2)などと表示しています。
+
+ついでにテンプレート関連のテーブル設計上のミスをここに列挙しておきます。
+・tpl_fileがUNIQUE KEYでない（参照時に名前のみがキーになるのだからUNIQUE必須。今は普通のINDEXすら作成していない）
+・tplfileテーブルとtplsourceテーブルの無意味な分離（XOOPS全体がそうですが）
+・tplsourceテーブルのtpl_idがPRIMARY KEYでない（必ずJOINするのに…）
+・tpl_refidフィールドの存在（繰り返しになるがファイル名だけをキーとすべき）
+・tpl_moduleにINDEXが作成されていない（こちらからの参照はほとんどないかも）
+・tplset_nameがUNIQUE KEYでない
+
+
+●TODO
+- Dream Weaver Extension 形式以外のテンプレート変数情報出力機能
+- テンプレート全体の概観機能（モジュールの枠を踏み越えて）
+- テンプレート構造の修正
+- テンプレート関連テーブルのALTER TABLE
+- 関連が切れてしまったblockテンプレートとの連結機能
+
+
+[/xlang:ja]
+
+CHANGELOG:
+
+2007-03-12 1.02 marked as the last number
+                added portuguesebr language files (thx Izzy)
+2006-03-24 1.01 modified comment/div implantation skips theme.html
+2006-03-18 1.00 full model public release
+                added "auto update" templates from themes/(your_theme)/templates/
+                added downloading templates
+                added uploading/overwriting templates
+                added HTML-implantation for recognizing template names
+                added logic-implantation collecting template variables
+                added outputting templates variable infos as Dreamweaver Snippets
+2005-02-03 0.20 updated module icon (thx argon)
+                fixed menu listing
+                modified the behavior on deleting DB templates
+2005-12-30 0.13 added french language files (thx marco)
+2005-12-22 0.12 modified some wrong documents :-)
+2005-12-22 0.11 fixed some typos
+2005-12-21 0.10 the 1st implementation
+
+
